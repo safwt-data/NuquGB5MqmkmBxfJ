@@ -38,7 +38,7 @@ opportunities to derive meaningful additional features.
 
 ---
 
-## 🔄 Project Workflow
+## 📈 Project Workflow
 
 The project follows the following workflow:
 
