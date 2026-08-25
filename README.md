@@ -4,11 +4,14 @@
 A machine learning project for predicting customer happiness and identifying
 the variables that contribute most strongly to customer satisfaction.
 </p>
-![Python](https://img.shields.io/badge/Python-3.x-blue)
-![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-purple)
-![Scikit-learn](https://img.shields.io/badge/Scikit--learn-Machine%20Learning-orange)
-![Model](https://img.shields.io/badge/Model-Random%20Forest-green)
-![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.x-blue" alt="Python">
+  <img src="https://img.shields.io/badge/Pandas-Data%20Analysis-purple" alt="Pandas">
+  <img src="https://img.shields.io/badge/Scikit--learn-Machine%20Learning-orange" alt="Scikit-learn">
+  <img src="https://img.shields.io/badge/Model-Random%20Forest-green" alt="Random Forest">
+  <img src="https://img.shields.io/badge/Status-Completed-brightgreen" alt="Status">
+</p>
 ---
 
 ## 📑 Table of Contents
