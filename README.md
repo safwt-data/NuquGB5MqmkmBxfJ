@@ -9,8 +9,8 @@ the variables that contribute most strongly to customer satisfaction.
   <img src="https://img.shields.io/badge/Python-3.10-blue" alt="Python">
   <img src="https://img.shields.io/badge/Pandas-Data%20Analysis-purple" alt="Pandas">
   <img src="https://img.shields.io/badge/Scikit--learn-Machine%20Learning-orange" alt="Scikit-learn">
-  <img src="https://img.shields.io/badge/Model-Random%20Forest-green" alt="Random Forest">
-  <img src="https://img.shields.io/badge/Hyperparmeter tunning -Random Search-brightgreen" alt="Status">
+  <img src="https://img.shields.io/badge/Best Model-Random%20Forest-green" alt="Random Forest">
+  <img src="https://img.shields.io/badge/Hyperparameter Tuning -Random Search-brightgreen" alt="Status">
 </p>
 ---
 
