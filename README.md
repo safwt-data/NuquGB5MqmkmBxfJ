@@ -26,6 +26,21 @@ the variables that contribute most strongly to customer satisfaction.
 
 ---
 
+## 📁 Project Structure
+
+    Customer success/
+    │
+    ├── data/
+    ├── models/
+    ├── notebooks/
+    ├── project_1/
+    ├── references/
+    ├── reports/
+    ├── .gitignore
+    └── README.md
+
+---
+
 ## 🔎 Overview
 
 The project focuses primarily on machine learning modeling and feature
@@ -51,6 +66,7 @@ The project follows the following workflow:
 7. Random Forest hyperparameter optimization
 8. Feature importance analysis
 9. Permutation feature importance
+10. Conclusion
 
 ---
 
@@ -85,21 +101,6 @@ provide stable predictive signals rather than reflecting noise.
 
 This analysis provides insight into how strongly the model depends on each
 variable when predicting customer happiness.
-
----
-
-## 📁 Project Structure
-
-    project/
-    │
-    ├── data/
-    ├── models/
-    ├── notebooks/
-    ├── project_1/
-    ├── references/
-    ├── reports/
-    ├── .gitignore
-    └── README.md
 
 ---
 
