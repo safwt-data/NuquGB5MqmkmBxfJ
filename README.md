@@ -1,11 +1,108 @@
-# NuquGB5MqmkmBxfJ
-The project focuses primarily on machine learning modeling and feature importance analysis to predict customer happiness in a customer service company.
+<h1 align="center">😊 Customer Happiness Prediction</h1>
 
-The project will begin with Exploratory Data Analysis (EDA), including an assessment of missing values and and a correlation matrix. Feature engineering will not be included, as the dataset contains only six variables and there are limited opportunities to derive meaningful additional features.
+<p align="center">
+A machine learning project for predicting customer happiness and identifying
+the variables that contribute most strongly to customer satisfaction.
+</p>
 
-Several machine learning models will be trained and evaluated to compare their predictive performance. The Random Forest model will then be explored further through RandomizedSearchCV, where a predefined number of hyperparameter combinations will be randomly selected and evaluated using cross-validation and the best-performing hyperparameters will then be used to build the optimized model.
+---
 
-Lastly, feature importance analysis will be conducted using the optimized Random Forest model to identify which variables contribute most and least to its predictions. Permutation feature importance will also be applied to both the training and test datasets. This will help validate whether the variables identified as important provide stable predictive signals rather than reflecting noise. The analysis will show how strongly the model depends on each variable when predicting customer happiness.
+## 📑 Table of Contents
 
+- [Overview](#overview)
+- [Project Workflow](#project-workflow)
+- [Machine Learning Models](#machine-learning-models)
+- [Model Optimization](#model-optimization)
+- [Feature Importance](#feature-importance)
+- [Project Structure](#project-structure)
+- [Technologies](#technologies)
 
+---
 
+## 🔎 Overview
+
+The project focuses primarily on machine learning modeling and feature
+importance analysis to predict customer happiness in a customer service company.
+
+The analysis begins with Exploratory Data Analysis (EDA), including an
+assessment of missing values and a correlation matrix. Feature engineering is
+not included because the dataset contains only six variables, providing limited
+opportunities to derive meaningful additional features.
+
+---
+
+## 🔄 Project Workflow
+
+The project follows the following workflow:
+
+1. Data loading
+2. Exploratory Data Analysis
+3. Missing value analysis
+4. Correlation analysis
+5. Machine learning model training
+6. Model comparison
+7. Random Forest hyperparameter optimization
+8. Feature importance analysis
+9. Permutation feature importance
+
+---
+
+## 🤖 Machine Learning Models
+
+Several machine learning models are trained and evaluated to compare their
+predictive performance.
+
+The models are evaluated using appropriate classification metrics to determine
+which approach performs best at predicting customer happiness.
+
+---
+
+## ⚙️ Model Optimization
+
+The Random Forest model is explored further using `RandomizedSearchCV`.
+
+A predefined number of hyperparameter combinations are randomly selected and
+evaluated using cross-validation. The best-performing hyperparameters are then
+used to construct the optimized Random Forest model.
+
+---
+
+## 📊 Feature Importance
+
+Feature importance analysis is conducted using the optimized Random Forest
+model to identify which variables contribute most and least to its predictions.
+
+Permutation feature importance is also applied to both the training and test
+datasets. Comparing the results helps determine whether important variables
+provide stable predictive signals rather than reflecting noise.
+
+This analysis provides insight into how strongly the model depends on each
+variable when predicting customer happiness.
+
+---
+
+## 📁 Project Structure
+
+    project/
+    │
+    ├── data/
+    ├── models/
+    │   └── project1/
+    ├── notebooks/
+    ├── project_1/
+    ├── references/
+    ├── reports/
+    ├── .gitignore
+    └── README.md
+
+---
+
+## 🛠️ Technologies
+
+- Python
+- Pandas
+- NumPy
+- Scikit-learn
+- Matplotlib
+- Jupyter Notebook
+- Git / GitHub
