@@ -94,7 +94,6 @@ variable when predicting customer happiness.
     │
     ├── data/
     ├── models/
-    │   └── project1/
     ├── notebooks/
     ├── project_1/
     ├── references/
@@ -112,4 +111,4 @@ variable when predicting customer happiness.
 - Scikit-learn
 - Matplotlib
 - Jupyter Notebook
-- Git / GitHub
+- GitHub
