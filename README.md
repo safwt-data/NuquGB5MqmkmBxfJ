@@ -6,7 +6,7 @@ the variables that contribute most strongly to customer satisfaction.
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Python-3.x-blue" alt="Python">
+  <img src="https://img.shields.io/badge/Python-3.10-blue" alt="Python">
   <img src="https://img.shields.io/badge/Pandas-Data%20Analysis-purple" alt="Pandas">
   <img src="https://img.shields.io/badge/Scikit--learn-Machine%20Learning-orange" alt="Scikit-learn">
   <img src="https://img.shields.io/badge/Model-Random%20Forest-green" alt="Random Forest">
