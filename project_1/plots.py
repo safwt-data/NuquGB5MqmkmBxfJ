@@ -4,11 +4,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 from project_1.dataset import load_data
+from project_1.modeling.train import split_data
+from project_1.modeling.train import train_model
+from project_1.modeling.predict import make_predictions
 
-def missing_data(df):
-   missing = df.isna().sum()/len(df)
-   logging.info("Missing data:\n%s", missing)
-   return missing
 
 
 def correlation_matrix(df):
@@ -26,27 +25,18 @@ def correlation_matrix(df):
     return 
     logging.info("Correlation matrix created successfully")
 
-def outlier_analysis(df, column):
-    q1_q = df[column].quantile(0.25)
-    q3_q = df[column].quantile(0.75)
-    # Find the IQR
-    IQR = q3_q - q1_q
-    factor = 2.5 # 2.5 × IQR means you only mark really extreme points as outliers
-    lower_limit_q = q1_q - IQR*factor
-    upper_limit_q = q3_q + IQR*factor
-
-    is_lower_q = df[column] < lower_limit_q
-
-    is_higher_q = df[column] > upper_limit_q
-    # Combine the masks to filter for outliers
-    outliers = df[column][is_lower_q | is_higher_q] 
-    # Count and print the number of outliers
-    logging.info(
-        "Number of outliers in %s: %s",
-        column,
-        len(outliers)
-    )
-    print(len(outliers))
+def feature_importance(model, X_train):
+    importances = pd.Series(model.feature_importances_, index=X_train.columns)
+    # A series is a better representation than using a dictionary 
+    # index is needed for the labels
+    top_features = importances.sort_values(ascending=False)
+    # sort first for the importance, then sort again for the visual order of the values
+    top_features.sort_values().plot(kind='barh', figsize=(12,6))
+    # A horizontal bar chart is much better than a vertical bar chart to represent importance
+    plt.title("Top 6 Feature Importances")
+    plt.show()
+    logging.info("Feature importance created successfully")
+  
 
 
 
@@ -57,13 +47,18 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
 
     df = load_data()
-    missing_data(df)
     correlation_matrix(df)
-    outlier_analysis(df, "X1")
-    outlier_analysis(df, "X2")
-    outlier_analysis(df, "X3")
-    outlier_analysis(df, "X4")
-    outlier_analysis(df, "X5")
-    outlier_analysis(df, "X6")
+
+    tuned_rf = RandomForestClassifier(random_state=42,  
+                            class_weight='balanced',
+                            max_depth = 17,
+                            min_samples_leaf = 5,
+                            min_samples_split = 6,
+                            n_estimators = 675
+                           )
+trained_tuned_rf = train_model(tuned_rf, X_train, y_train)
+tuned_rf_predictions = make_predictions(trained_tuned_rf, X_test)
+feature_importance(trained_tuned_rf, X_train)
+
 
 # python -m project_1.plots
