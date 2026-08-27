@@ -1,118 +1,69 @@
-# Checking data types
-df.info()
+import logging
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-# Missing Values
-df.isna().sum()/len(df)
+from project_1.dataset import load_data
 
-# Correlation matrix analysis
-corr = df.select_dtypes(include='number').corr()
-plt.figure(figsize=(9, 7))
-mask = np.triu(np.ones_like(corr))
-correlation_matrix = sns.heatmap(corr, center=0,
+def missing_data(df):
+   missing = df.isna().sum()/len(df)
+   logging.info("Missing data:\n%s", missing)
+   return missing
+
+
+def correlation_matrix(df):
+    corr = df.select_dtypes(include='number').corr()
+    plt.figure(figsize=(9, 7))
+    mask = np.triu(np.ones_like(corr))
+    correlation_matrix = sns.heatmap(corr, center=0,
             mask=mask,
               linewidths=1,
               annot=True,
                 fmt=".2f"
 )
-plt.savefig("../reports/figures/correlation_matrix.png")
-plt.title("Correlation matrix")
-plt.show()
+    plt.title("Correlation matrix")
+    plt.show()
+    return 
+    logging.info("Correlation matrix created successfully")
 
-# Outliers Analysis quantile method
-q1_q = df['X1'].quantile(0.25)
-q3_q = df['X1'].quantile(0.75)
-# Find the IQR
-IQR = q3_q - q1_q
-factor = 2.5 # 2.5 × IQR means you only mark really extreme points as outliers
-lower_limit_q = q1_q - IQR*factor
-upper_limit_q = q3_q + IQR*factor
+def outlier_analysis(df, column):
+    q1_q = df[column].quantile(0.25)
+    q3_q = df[column].quantile(0.75)
+    # Find the IQR
+    IQR = q3_q - q1_q
+    factor = 2.5 # 2.5 × IQR means you only mark really extreme points as outliers
+    lower_limit_q = q1_q - IQR*factor
+    upper_limit_q = q3_q + IQR*factor
 
-is_lower_q = df['X1'] < lower_limit_q
+    is_lower_q = df[column] < lower_limit_q
 
-is_higher_q = df['X1'] > upper_limit_q
-# Combine the masks to filter for outliers
-outliers = df['X1'][is_lower_q | is_higher_q] 
-# Count and print the number of outliers
-print(len(outliers))
+    is_higher_q = df[column] > upper_limit_q
+    # Combine the masks to filter for outliers
+    outliers = df[column][is_lower_q | is_higher_q] 
+    # Count and print the number of outliers
+    logging.info(
+        "Number of outliers in %s: %s",
+        column,
+        len(outliers)
+    )
+    print(len(outliers))
 
-q1_q = df['X2'].quantile(0.25)
-q3_q = df['X2'].quantile(0.75)
-# Find the IQR
-IQR = q3_q - q1_q
-factor = 2.5 # 2.5 × IQR means you only mark really extreme points as outliers
-lower_limit_q = q1_q - IQR*factor
-upper_limit_q = q3_q + IQR*factor
 
-is_lower_q = df['X2'] < lower_limit_q
 
-is_higher_q = df['X2'] > upper_limit_q
-# Combine the masks to filter for outliers
-outliers = df['X2'][is_lower_q | is_higher_q] 
-# Count and print the number of outliers
-print(len(outliers))
 
-q1_q = df['X3'].quantile(0.25)
-q3_q = df['X3'].quantile(0.75)
-# Find the IQR
-IQR = q3_q - q1_q
-factor = 2.5 # 2.5 × IQR means you only mark really extreme points as outliers
-lower_limit_q = q1_q - IQR*factor
-upper_limit_q = q3_q + IQR*factor
 
-is_lower_q = df['X3'] < lower_limit_q
 
-is_higher_q = df['X3'] > upper_limit_q
-# Combine the masks to filter for outliers
-outliers = df['X3'][is_lower_q | is_higher_q] 
-# Count and print the number of outliers
-print(len(outliers))
+if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
 
-q1_q = df['X4'].quantile(0.25)
-q3_q = df['X4'].quantile(0.75)
-# Find the IQR
-IQR = q3_q - q1_q
-factor = 2.5 # 2.5 × IQR means you only mark really extreme points as outliers
-lower_limit_q = q1_q - IQR*factor
-upper_limit_q = q3_q + IQR*factor
+    df = load_data()
+    missing_data(df)
+    correlation_matrix(df)
+    outlier_analysis(df, "X1")
+    outlier_analysis(df, "X2")
+    outlier_analysis(df, "X3")
+    outlier_analysis(df, "X4")
+    outlier_analysis(df, "X5")
+    outlier_analysis(df, "X6")
 
-is_lower_q = df['X4'] < lower_limit_q
-
-is_higher_q = df['X4'] > upper_limit_q
-# Combine the masks to filter for outliers
-outliers = df['X4'][is_lower_q | is_higher_q] 
-# Count and print the number of outliers
-print(len(outliers))
-
-q1_q = df['X5'].quantile(0.25)
-q3_q = df['X5'].quantile(0.75)
-# Find the IQR
-IQR = q3_q - q1_q
-factor = 2.5 # 2.5 × IQR means you only mark really extreme points as outliers
-lower_limit_q = q1_q - IQR*factor
-upper_limit_q = q3_q + IQR*factor
-
-is_lower_q = df['X5'] < lower_limit_q
-
-is_higher_q = df['X5'] > upper_limit_q
-# Combine the masks to filter for outliers
-outliers = df['X5'][is_lower_q | is_higher_q] 
-# Count and print the number of outliers
-print(len(outliers))
-
-q1_q = df['X6'].quantile(0.25)
-q3_q = df['X6'].quantile(0.75)
-# Find the IQR
-IQR = q3_q - q1_q
-factor = 2.5 # 2.5 × IQR means you only mark really extreme points as outliers
-lower_limit_q = q1_q - IQR*factor
-upper_limit_q = q3_q + IQR*factor
-
-is_lower_q = df['X6'] < lower_limit_q
-
-is_higher_q = df['X6'] > upper_limit_q
-# Combine the masks to filter for outliers
-outliers = df['X6'][is_lower_q | is_higher_q] 
-# Count and print the number of outliers
-print(len(outliers))
-
-# Feature engineering is not part of this project as there are only 6 variables and I can not derive anything
+# python -m project_1.features
