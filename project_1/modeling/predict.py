@@ -7,6 +7,21 @@ from sklearn.tree import DecisionTreeClassifier
 from xgboost import XGBClassifier
 from sklearn.ensemble import RandomForestClassifier
 
+from dataset import load_data
+
+def split_data():
+    y = df['Y']
+    X = df.drop('Y',axis=1)
+
+    X_train, X_test, y_train, y_test = train_test_split(X, y,
+        test_size=0.2, random_state=42, stratify= y )
+    return X_train, X_test, y_train, y_test
+
+X_train, X_test, y_train, y_test = split_data()
+
+def train_model(model, X_train, y_train):
+    model.fit(X_train, y_train)
+    return model
 
 # KNN
 with open("../models/project1/knn.pkl", "wb") as file:

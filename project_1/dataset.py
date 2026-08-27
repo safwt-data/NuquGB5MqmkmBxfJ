@@ -4,13 +4,9 @@ import logging
 
 def load_data():
     logging.info("Loading dataset")
-
     df = pd.read_csv("data\ACME-HappinessSurvey2020.csv")
-
     logging.info("Dataset loaded successfully")
-
     return df
-
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
