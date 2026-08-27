@@ -60,5 +60,10 @@ if __name__ == "__main__":
     missing_data(df)
     correlation_matrix(df)
     outlier_analysis(df, "X1")
+    outlier_analysis(df, "X2")
+    outlier_analysis(df, "X3")
+    outlier_analysis(df, "X4")
+    outlier_analysis(df, "X5")
+    outlier_analysis(df, "X6")
 
 # python -m project_1.plots
