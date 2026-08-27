@@ -1,5 +1,5 @@
-import pickle
-from sklearn.model_selection import train_test_split, cross_val_score
+import logging
+from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
@@ -7,54 +7,59 @@ from sklearn.tree import DecisionTreeClassifier
 from xgboost import XGBClassifier
 from sklearn.ensemble import RandomForestClassifier
 
-from dataset import load_data
+from project_1.dataset import load_data
+from project_1.modeling.train import split_data
+from project_1.modeling.train import train_model
 
-def split_data():
-    y = df['Y']
-    X = df.drop('Y',axis=1)
+def make_predictions(model, X_test):
+    predictions = model.predict(X_test)
+    logging.info("Predictions successfully")
+    return predictions
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y,
-        test_size=0.2, random_state=42, stratify= y )
-    return X_train, X_test, y_train, y_test
+if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
 
-X_train, X_test, y_train, y_test = split_data()
+    df = load_data()
 
-def train_model(model, X_train, y_train):
-    model.fit(X_train, y_train)
-    return model
+    X_train, X_test, y_train, y_test = split_data(df)
 
-# KNN
-with open("../models/project1/knn.pkl", "wb") as file:
-    pickle.load(knn, file)
-# Make predictions
-knn_predictions = knn.predict(X_test)
-# logistic Regression
-with open("../models/project1/lr.pkl","wb") as file:
-    pickle.load(logreg, file)
-# Make predictions
-lr_predictions = logreg.predict(X_test)
-# SVM 
-with open("../models/project1/svm.pkl","wb") as file:
-    pickle.load(svm, file)
-# Make predictions
-svm_predictions = svm.predict(X_test)
-# Decision Tree
-with open("../models/project1/normal_tree.pkl","wb") as file:
-    pickle.load(normal_tree, file)
-# Make predictions
-normal_tree_predictions = normal_tree.predict(X_test)
-# Xgboost
-with open("../models/project1/xgboost.pkl","wb") as file:
-    pickle.load(xgboost, file)
-# Make predictions
-xgboost_predictions = xgboost.predict(X_test)
-# Random Forest
-with open("../models/project1/rf.pkl","wb") as file:
-    pickle.load(rf, file)
-# Make predictions
-rf_predictions = rf.predict(X_test)
-# Random Forest Tuned
-with open("../models/project1/rf_tuned.pkl","wb") as file:
-    pickle.load(rf_tuned, file)
-# Make predictions
-predictions = rf_tuned.predict(X_test)
+    knn = KNeighborsClassifier(n_neighbors=20)
+    trained_knn = train_model(knn, X_train, y_train)
+    knn_predictions = make_predictions(trained_knn, X_test)
+
+    logreg = LogisticRegression(random_state =42)
+    trained_logreg = train_model(logreg, X_train, y_train)
+    logreg_predictions = make_predictions(trained_logreg, X_test)
+
+    svm = SVC(random_state =42)
+    trained_svm = train_model(svm, X_train, y_train)
+    svm_predictions = make_predictions(trained_svm, X_test)
+
+    normal_tree = DecisionTreeClassifier(random_state=42,
+                                     class_weight='balanced')
+    trained_normal_tree = train_model(normal_tree, X_train, y_train)
+    tree_predictions = make_predictions(trained_normal_tree,X_test)
+
+    xgboost = XGBClassifier(random_state =42)
+    trained_xgboost = train_model(xgboost,X_train,y_train)
+    xgboost_predications = make_predictions(trained_xgboost,X_test)
+
+    rf = RandomForestClassifier(random_state=42,  
+                            class_weight='balanced')
+    trained_rf = train_model(rf,X_train,y_train)
+    rf_predictions = make_predictions(trained_rf, X_test)
+
+    tuned_rf = RandomForestClassifier(random_state=42,  
+                            class_weight='balanced',
+                            max_depth = 17,
+                            min_samples_leaf = 5,
+                            min_samples_split = 6,
+                            n_estimators = 675
+                           )
+    trained_tuned_rf = train_model(tuned_rf, X_train, y_train)
+    tuned_rf_predictions = make_predictions(trained_tuned_rf, X_test)
+
+
+
+
+
