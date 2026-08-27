@@ -7,7 +7,7 @@ from project_1.dataset import load_data
 
 def missing_data(df):
    missing = df.isna().sum()/len(df)
-   logging.info("Missing done successfully")
+   logging.info("Missing data:\n%s", missing)
    return missing
 
 
@@ -24,6 +24,7 @@ def correlation_matrix(df):
     plt.title("Correlation matrix")
     plt.show()
     return 
+    logging.info("Correlation matrix created successfully")
 
 def outlier_analysis(df, column):
     q1_q = df[column].quantile(0.25)
@@ -40,6 +41,11 @@ def outlier_analysis(df, column):
     # Combine the masks to filter for outliers
     outliers = df[column][is_lower_q | is_higher_q] 
     # Count and print the number of outliers
+    logging.info(
+        "Number of outliers in %s: %s",
+        column,
+        len(outliers)
+    )
     print(len(outliers))
 
 
