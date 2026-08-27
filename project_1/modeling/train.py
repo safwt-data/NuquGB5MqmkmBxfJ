@@ -19,7 +19,6 @@ def split_data(df):
     logging.info("Dataset split successfully")
     return X_train, X_test, y_train, y_test
 
-X_train, X_test, y_train, y_test = split_data(df)
 
 def train_model(model, X_train, y_train):
     model.fit(X_train, y_train)
@@ -50,14 +49,10 @@ with open("../models/project1/rf_tuned.pkl","wb") as file:
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
 
-     # Load data
     df = load_data()
 
-    # Split data
     X_train, X_test, y_train, y_test = split_data(df)
 
-    # Create model
     knn = KNeighborsClassifier(n_neighbors=20)
 
-    # Train model
     trained_knn = train_model(knn, X_train, y_train)
