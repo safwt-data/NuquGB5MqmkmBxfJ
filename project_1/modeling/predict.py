@@ -7,6 +7,7 @@ from sklearn.tree import DecisionTreeClassifier
 from xgboost import XGBClassifier
 from sklearn.ensemble import RandomForestClassifier
 
+
 # KNN
 with open("../models/project1/knn.pkl", "wb") as file:
     pickle.load(knn, file)
