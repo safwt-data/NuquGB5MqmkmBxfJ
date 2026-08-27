@@ -1,7 +1,9 @@
 import logging
+import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.ensemble import RandomForestClassifier
 
 from project_1.dataset import load_data
 from project_1.modeling.train import split_data
@@ -48,6 +50,9 @@ if __name__ == "__main__":
 
     df = load_data()
     correlation_matrix(df)
+    # Split data
+    X_train, X_test, y_train, y_test = split_data(df)
+
 
     tuned_rf = RandomForestClassifier(random_state=42,  
                             class_weight='balanced',
