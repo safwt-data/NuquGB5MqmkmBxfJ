@@ -7,10 +7,10 @@ from sklearn.tree import DecisionTreeClassifier
 from xgboost import XGBClassifier
 from sklearn.ensemble import RandomForestClassifier
 
-from dataset import load_data
+from project_1.dataset import load_data
 
 
-def split_data():
+def split_data(df):
     y = df['Y']
     X = df.drop('Y',axis=1)
 
@@ -19,18 +19,13 @@ def split_data():
     logging.info("Dataset split successfully")
     return X_train, X_test, y_train, y_test
 
-X_train, X_test, y_train, y_test = split_data()
+X_train, X_test, y_train, y_test = split_data(df)
 
 def train_model(model, X_train, y_train):
     model.fit(X_train, y_train)
     logging.info("Trained successfully")
     return model
 
-
-# KNN
-knn = KNeighborsClassifier(n_neighbors=20)
-
-trained_knn = train_model(knn, X_train, y_train)
 '''
 # Logistic Regression
 with open("../models/project1/lr.pkl","wb") as file:
@@ -54,3 +49,15 @@ with open("../models/project1/rf_tuned.pkl","wb") as file:
 '''
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
+
+     # Load data
+    df = load_data()
+
+    # Split data
+    X_train, X_test, y_train, y_test = split_data(df)
+
+    # Create model
+    knn = KNeighborsClassifier(n_neighbors=20)
+
+    # Train model
+    trained_knn = train_model(knn, X_train, y_train)
