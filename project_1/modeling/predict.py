@@ -1,4 +1,12 @@
 import pickle
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
+from sklearn.tree import DecisionTreeClassifier
+from xgboost import XGBClassifier
+from sklearn.ensemble import RandomForestClassifier
+
 # KNN
 with open("../models/project1/knn.pkl", "wb") as file:
     pickle.load(knn, file)
