@@ -19,7 +19,7 @@ def split_data(df):
     logging.info("Dataset split successfully")
     return X_train, X_test, y_train, y_test
 
-X_train, X_test, y_train, y_test = split_data()
+X_train, X_test, y_train, y_test = split_data(df)
 
 def train_model(model, X_train, y_train):
     model.fit(X_train, y_train)
