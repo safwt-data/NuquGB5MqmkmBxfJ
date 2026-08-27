@@ -59,7 +59,7 @@ if __name__ == "__main__":
     trained_tuned_rf = train_model(tuned_rf, X_train, y_train)
     tuned_rf_predictions = make_predictions(trained_tuned_rf, X_test)
 
-
+# python -m project_1.modeling.predict
 
 
 
