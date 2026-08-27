@@ -105,7 +105,7 @@ variable when predicting customer happiness.
 ---
 ## ✅ Conclusion
 
-The optimized model achieved an accuracy of 77%, while the highest F1-score for label 1 reached 79%. Furthermore, shuffling X1 results in an 11% drop in model performance, indicating that X1 represents a strong predictive signal for the model. Based on the feature importance results, retaining X1, X5, and X3 appears well justified. X6 and X2 could also be considered, while X4 could be considered for removal, as it provides the weakest predictive signal among the features.
+The optimized model achieved an accuracy of 77%, while the highest F1-score for label 1 reached 79%. Furthermore, shuffling X1 results in an 18% drop in model performance on unseen data, indicating that X1 represents a strong predictive signal for the model. Based on the feature importance results, retaining X1, X5, and X3 appears well justified. X6 and X2 could also be considered, while X4 could be considered for removal, as it provides the weakest predictive signal among the features on the seen data.
 
 ---
 
