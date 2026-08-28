@@ -23,8 +23,8 @@ def correlation_matrix(df):
 )
     plt.title("Correlation matrix")
     plt.show()
-    return 
     logging.info("Correlation matrix created successfully")
+    return 
 
 def outlier_analysis(df, column):
     q1_q = df[column].quantile(0.25)
