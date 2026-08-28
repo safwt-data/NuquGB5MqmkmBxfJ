@@ -24,8 +24,9 @@ def correlation_matrix(df):
 )
     plt.title("Correlation matrix")
     plt.show()
-    return 
     logging.info("Correlation matrix created successfully")
+    return correlation_matrix
+  
 
 def feature_importance(model, X_train):
     importances = pd.Series(model.feature_importances_, index=X_train.columns)
